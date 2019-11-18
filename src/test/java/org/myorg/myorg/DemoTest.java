@@ -20,8 +20,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 @GraphWalker(value = "random(edge_coverage(100))", start = "start")
-public class DemoTest implements CitySearchDemo{
-FirefoxDriver driver = new FirefoxDriver();
+public class DemoTest extends ExecutionContext implements CitySearchDemo{
 
 	@Override
 	public void v_ShowAllSearch() {
