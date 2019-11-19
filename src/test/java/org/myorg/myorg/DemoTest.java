@@ -13,54 +13,94 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 @GraphWalker(value = "random(edge_coverage(100))", start = "start")
 public class DemoTest extends ExecutionContext implements CitySearchDemo{
+	
+	WebDriver driver = new FirefoxDriver();
 
 	@Override
 	public void v_ShowAllSearch() {
-		System.out.println("showAll");
+		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void v_ValidCityEntered() {
-		System.out.println("validCity");
+		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void e_EnterCity() {
-		System.out.println("EnterCity");
+		driver.findElement(By.id("searchInput")).sendKeys("Istanbul");
 		
 	}
 
 	@Override
 	public void e_ClickInfoSearchButton() {
-		System.out.println("clickinfo");
+		try {
+			driver.findElement(By.id("showInfo")).click();
+			
+			Thread.sleep(6000);
+			}catch(Exception e){
+				System.out.println(e);
+			}
 		
 	}
 
 	@Override
+	public void e_goBackWeather() {
+		try {
+			driver.findElement(By.cssSelector("button")).click();
+			driver.findElement(By.id("searchInput")).clear();
+			Thread.sleep(6000);
+			}catch(Exception e){
+				System.out.println(e);
+			}
+		
+	}
+
+	@Override
+	public void e_invalidCity() {
+		try {
+		driver.findElement(By.cssSelector("body")).sendKeys(Keys.ENTER);
+		driver.findElement(By.cssSelector("button")).click();
+		driver.findElement(By.id("searchInput")).clear();
+		Thread.sleep(3000);
+		}catch(Exception e) {
+			System.out.println(e);
+		}
+	}
+
+	@Override
 	public void e_init() {
-		// TODO Auto-generated method stub
+		driver.get("http://127.0.0.1:5500/home.html");
 		
 	}
 
 	@Override
 	public void e_ClickShowAllButton() {
-		// TODO Auto-generated method stub
+		try {
+			driver.findElement(By.id("showAll")).click();
+			
+			Thread.sleep(6000);
+			}catch(Exception e){
+				System.out.println(e);
+			}
 		
 	}
 
 	@Override
 	public void e_ClickCurrency() {
-		// TODO Auto-generated method stub
+		try {
+			driver.findElement(By.id("showCurrency")).click();
+			
+			Thread.sleep(6000);
+			}catch(Exception e){
+				System.out.println(e);
+			}
 		
 	}
 
@@ -72,19 +112,13 @@ public class DemoTest extends ExecutionContext implements CitySearchDemo{
 
 	@Override
 	public void e_ClickWeatherButton() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void e_InvalidCityEntered() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void e_InvalidSearch() {
-		// TODO Auto-generated method stub
+		try {
+			driver.findElement(By.id("showWeather")).click();
+			
+			Thread.sleep(6000);
+			}catch(Exception e){
+				System.out.println(e);
+			}
 		
 	}
 
@@ -101,8 +135,32 @@ public class DemoTest extends ExecutionContext implements CitySearchDemo{
 	}
 
 	@Override
-	public void e_InvalidInfo() {
-		// TODO Auto-generated method stub
+	public void e_goBackShowAll() {
+		driver.findElement(By.id("searchInput")).clear();
+		
+	}
+
+	@Override
+	public void e_goBackCurrency() {
+		try {
+			driver.findElement(By.cssSelector("button")).click();
+			driver.findElement(By.id("searchInput")).clear();
+			Thread.sleep(6000);
+			}catch(Exception e){
+				System.out.println(e);
+			}
+		
+	}
+
+	@Override
+	public void e_goBackInfo() {
+		try {
+			driver.findElement(By.cssSelector("button")).click();
+			driver.findElement(By.id("searchInput")).clear();
+			Thread.sleep(6000);
+			}catch(Exception e){
+				System.out.println(e);
+			}
 		
 	}
 

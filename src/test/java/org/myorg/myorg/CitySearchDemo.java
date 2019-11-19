@@ -5,7 +5,7 @@ import org.graphwalker.java.annotation.Model;
 import org.graphwalker.java.annotation.Vertex;
 import org.graphwalker.java.annotation.Edge;
 
-@Model(file = "CitySearchFinal.json")
+@Model(file = "final.json")
 public interface CitySearchDemo {
 
     @Vertex()
@@ -19,6 +19,12 @@ public interface CitySearchDemo {
 
     @Edge()
     void e_ClickInfoSearchButton();
+
+    @Edge()
+    void e_goBackWeather();
+
+    @Edge()
+    void e_invalidCity();
 
     @Edge()
     void e_init();
@@ -35,12 +41,6 @@ public interface CitySearchDemo {
     @Edge()
     void e_ClickWeatherButton();
 
-    @Edge()
-    void e_InvalidCityEntered();
-
-    @Edge()
-    void e_InvalidSearch();
-
     @Vertex()
     void v_WeatherSearch();
 
@@ -48,7 +48,13 @@ public interface CitySearchDemo {
     void v_SiteIdle();
 
     @Edge()
-    void e_InvalidInfo();
+    void e_goBackShowAll();
+
+    @Edge()
+    void e_goBackCurrency();
+
+    @Edge()
+    void e_goBackInfo();
 
     @Vertex()
     void v_InfoSearch();
