@@ -13,16 +13,28 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-//deneme
+
 
 @GraphWalker(value = "random(edge_coverage(100))", start = "start")
 public class DemoTest extends ExecutionContext implements CitySearchDemo{
 	
 	WebDriver driver = new FirefoxDriver();
+	WebDriverWait waiter = new WebDriverWait(driver,10);
+	
+	@AfterExecution
+    public void cleanup() {
+        if (driver != null) {
+            driver.quit();
+        }
+    }
 
 	@Override
 	public void v_ShowAllSearch() {
-		// TODO Auto-generated method stub
+		//v_WeatherSearch();
+		Assert.assertNotNull(driver.findElement(By.id("temperature")).getText());
+		Assert.assertNotNull(driver.findElement(By.id("humidity")).getText());
+		v_InfoSearch();
+		v_CurrencySearch();
 		
 	}
 
@@ -43,7 +55,7 @@ public class DemoTest extends ExecutionContext implements CitySearchDemo{
 		try {
 			driver.findElement(By.id("showInfo")).click();
 			
-			Thread.sleep(6000);
+			Thread.sleep(2000);
 			}catch(Exception e){
 				System.out.println(e);
 			}
@@ -55,7 +67,7 @@ public class DemoTest extends ExecutionContext implements CitySearchDemo{
 		try {
 			driver.findElement(By.cssSelector("button")).click();
 			driver.findElement(By.id("searchInput")).clear();
-			Thread.sleep(6000);
+			Thread.sleep(2000);
 			}catch(Exception e){
 				System.out.println(e);
 			}
@@ -85,7 +97,7 @@ public class DemoTest extends ExecutionContext implements CitySearchDemo{
 		try {
 			driver.findElement(By.id("showAll")).click();
 			
-			Thread.sleep(6000);
+			Thread.sleep(2000);
 			}catch(Exception e){
 				System.out.println(e);
 			}
@@ -97,7 +109,7 @@ public class DemoTest extends ExecutionContext implements CitySearchDemo{
 		try {
 			driver.findElement(By.id("showCurrency")).click();
 			
-			Thread.sleep(6000);
+			Thread.sleep(2000);
 			}catch(Exception e){
 				System.out.println(e);
 			}
@@ -106,7 +118,10 @@ public class DemoTest extends ExecutionContext implements CitySearchDemo{
 
 	@Override
 	public void v_CurrencySearch() {
-		// TODO Auto-generated method stub
+		Assert.assertNotNull(driver.findElement(By.id("usd")).getText());
+		Assert.assertNotNull(driver.findElement(By.id("euro")).getText());
+		Assert.assertNotNull(driver.findElement(By.id("try")).getText());
+
 		
 	}
 
@@ -115,7 +130,7 @@ public class DemoTest extends ExecutionContext implements CitySearchDemo{
 		try {
 			driver.findElement(By.id("showWeather")).click();
 			
-			Thread.sleep(6000);
+			Thread.sleep(1000);
 			}catch(Exception e){
 				System.out.println(e);
 			}
@@ -124,14 +139,14 @@ public class DemoTest extends ExecutionContext implements CitySearchDemo{
 
 	@Override
 	public void v_WeatherSearch() {
-		// TODO Auto-generated method stub
+		Assert.assertNotNull(driver.findElement(By.id("cityTemperature")).getText());
+		Assert.assertNotNull(driver.findElement(By.id("cityHumidity")).getText());
 		
 	}
 
 	@Override
 	public void v_SiteIdle() {
-		// TODO Auto-generated method stub
-		
+	 Assert.assertTrue(waiter.until(ExpectedConditions.titleContains("Discover new cities")));
 	}
 
 	@Override
@@ -145,7 +160,7 @@ public class DemoTest extends ExecutionContext implements CitySearchDemo{
 		try {
 			driver.findElement(By.cssSelector("button")).click();
 			driver.findElement(By.id("searchInput")).clear();
-			Thread.sleep(6000);
+			Thread.sleep(1000);
 			}catch(Exception e){
 				System.out.println(e);
 			}
@@ -157,7 +172,7 @@ public class DemoTest extends ExecutionContext implements CitySearchDemo{
 		try {
 			driver.findElement(By.cssSelector("button")).click();
 			driver.findElement(By.id("searchInput")).clear();
-			Thread.sleep(6000);
+			Thread.sleep(1000);
 			}catch(Exception e){
 				System.out.println(e);
 			}
@@ -166,7 +181,11 @@ public class DemoTest extends ExecutionContext implements CitySearchDemo{
 
 	@Override
 	public void v_InfoSearch() {
-		// TODO Auto-generated method stub
+		Assert.assertNotNull(driver.findElement(By.id("population")).getText());
+		Assert.assertNotNull(driver.findElement(By.id("countryCurrency")).getText());
+		Assert.assertNotNull(driver.findElement(By.id("languages")).getText());
+		Assert.assertNotNull(driver.findElement(By.id("region")).getText());
+		Assert.assertNotNull(driver.findElement(By.id("subRegion")).getText());
 		
 	}
 
