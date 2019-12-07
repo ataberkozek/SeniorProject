@@ -1,0 +1,12 @@
+istanbul
+izmir
+moscow
+paris
+berlin
+london
+ankara
+plovdiv
+sofia
+thessaloniki
+shangai
+new york

@@ -5,7 +5,7 @@ import org.graphwalker.java.annotation.Model;
 import org.graphwalker.java.annotation.Vertex;
 import org.graphwalker.java.annotation.Edge;
 
-@Model(file = "final.json")
+@Model(file = "template.json")
 public interface CitySearchDemo {
 
     @Vertex()
@@ -15,31 +15,13 @@ public interface CitySearchDemo {
     void v_ValidCityEntered();
 
     @Edge()
-    void e_EnterCity();
-
-    @Edge()
-    void e_ClickInfoSearchButton();
-
-    @Edge()
-    void e_goBackWeather();
-
-    @Edge()
     void e_invalidCity();
 
     @Edge()
     void e_init();
 
-    @Edge()
-    void e_ClickShowAllButton();
-
-    @Edge()
-    void e_ClickCurrency();
-
     @Vertex()
     void v_CurrencySearch();
-
-    @Edge()
-    void e_ClickWeatherButton();
 
     @Vertex()
     void v_WeatherSearch();
@@ -50,12 +32,30 @@ public interface CitySearchDemo {
     @Edge()
     void e_goBackShowAll();
 
-    @Edge()
-    void e_goBackCurrency();
-
-    @Edge()
-    void e_goBackInfo();
-
     @Vertex()
     void v_InfoSearch();
+
+    @Edge()
+    void button_currencyReturn();
+
+    @Edge()
+    void button_showInfo();
+
+    @Edge()
+    void button_showAll();
+
+    @Edge()
+    void button_infoReturn();
+
+    @Edge()
+    void button_weatherReturn();
+
+    @Edge()
+    void button_showCurrency();
+
+    @Edge()
+    void button_showWeather();
+
+    @Edge()
+    void text_searchInput();
 }
