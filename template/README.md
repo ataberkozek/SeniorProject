@@ -1,0 +1,1 @@
+java -jar graphwalker.jar source -i template.json java.template > output.java

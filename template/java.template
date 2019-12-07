@@ -1,0 +1,79 @@
+HEADER<{{
+import org.graphwalker.core.machine.ExecutionContext;
+import org.graphwalker.java.annotation.AfterExecution;
+import org.graphwalker.java.annotation.BeforeExecution;
+import org.graphwalker.java.annotation.GraphWalker;
+import org.junit.Assert;
+import org.openqa.selenium.By;
+import org.openqa.selenium.*;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.*;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+@GraphWalker(value = "random(edge_coverage(100))", start = "start")
+public class DemoTest extends ExecutionContext implements CitySearchDemo {
+public static ArrayList<String> cityList = new ArrayList<String>();
+}}>HEADER
+  /**
+   * This method implements the {EDGE_VERTEX} '{LABEL}'
+   * {DESCRIPTION}
+   */
+  public void {LABEL}() {
+		godMethod("{LABEL}");
+		
+  }
+FOOTER<{{
+	public static void godMethod(String str){
+		String[] parts = str.split("_");
+		if(parts[0].equals("button")) {
+			try {
+				driver.findElement(By.id(parts[1])).click();
+				Thread.sleep(2000);
+				}catch(Exception e){
+					System.out.println(e);
+				}
+		} else if(parts[0].equals("text")){
+			String result = selectRandomCity();
+			driver.findElement(By.id(parts[1])).sendKeys("result");
+		} else if(parts[1].equals("init")){
+			driver.get("http://127.0.0.1:5500/home.html");
+		}
+		}
+		public static String selectRandomCity() {
+        Scanner scanner = null;
+
+        try {
+            scanner = new Scanner(new File("cities.txt"));
+        } catch(Exception e) {
+            System.out.println("Could not find file");
+        }
+
+        int count = 0;
+        while(scanner.hasNext()) {
+            count++;
+            cityList.add(scanner.next());
+        }
+
+        Random generator = new Random();
+        int randomNumber = generator.nextInt(count);
+
+        String selectedCity = cityList.get(randomNumber);
+
+        return selectedCity;
+    }
+
+    public static boolean isValidCity(String city) {
+
+        boolean isValid = false;
+        for (int i = 0; i < cityList.size(); i++) {
+            if (city.equalsIgnoreCase(cityList.get(i))) {
+                isValid = true;
+            }
+        }
+        return isValid;
+    }
+}
+}}>FOOTER
